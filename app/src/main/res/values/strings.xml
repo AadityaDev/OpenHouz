@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">OpenHouz</string>
+    <string name="feedback_title">Feedback</string>
+    <string name="comments_text">Your Comments</string>
+    <string name="name_text">Name</string>
+    <string name="email_text">Email</string>
+    <string name="phone_text">Phone Number</string>
+    <string name="rupee">\u20B9</string>
+    <!--Property detail card-->
+    <string name="space_details_text">Space Details</string>
+    <string name="building_specs_text">Building Specs</string>
+    <string name="nearby_metro_text">Nearby Metro Stations</string>
+    <string name="amenities_text">Amenities</string>
+    <string name="restrictions_text">Restrictions</string>
 </resources>
