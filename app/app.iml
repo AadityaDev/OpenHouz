@@ -85,6 +85,11 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/bundles" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dependency-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/OpenHouz/base/unspecified/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/OpenHouz/common/unspecified/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/OpenHouz/commonwidget/unspecified/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/OpenHouz/panowidget/unspecified/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/OpenHouz/videowidget/unspecified/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.4.0/jars" />
@@ -130,5 +135,15 @@
     <orderEntry type="library" exported="" name="google-api-services-youtube-v3-rev173-1.22.0" level="project" />
     <orderEntry type="library" exported="" name="support-vector-drawable-23.4.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.4.0" level="project" />
+    <orderEntry type="module" module-name="commonwidget" exported="" />
+    <orderEntry type="module" module-name="videowidget" exported="" />
+    <orderEntry type="module" module-name="base" exported="" />
+    <orderEntry type="module" module-name="panowidget" exported="" />
+    <orderEntry type="module" module-name="common" exported="" />
+    <orderEntry type="library" exported="" name="commonwidget-unspecified" level="project" />
+    <orderEntry type="library" exported="" name="videowidget-unspecified" level="project" />
+    <orderEntry type="library" exported="" name="base-unspecified" level="project" />
+    <orderEntry type="library" exported="" name="panowidget-unspecified" level="project" />
+    <orderEntry type="library" exported="" name="common-unspecified" level="project" />
   </component>
 </module>

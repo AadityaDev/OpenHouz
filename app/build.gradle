@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.technawabs.openhouz"
-        minSdkVersion 10
+        minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -28,4 +28,9 @@ dependencies {
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.google.apis:google-api-services-youtube:v3-rev173-1.22.0'
+    compile project(':base')
+    compile project(':common')
+    compile project(':commonwidget')
+    compile project(':panowidget')
+    compile project(':videowidget')
 }
