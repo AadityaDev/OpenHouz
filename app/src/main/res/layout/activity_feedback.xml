@@ -95,4 +95,12 @@
             android:paddingStart="@dimen/activity_horizontal_margin" />
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/home_background"
+        android:layout_alignParentBottom="true"
+        />
+
 </RelativeLayout>
