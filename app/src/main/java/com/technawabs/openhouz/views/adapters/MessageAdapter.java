@@ -5,34 +5,36 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.technawabs.openhouz.constants.OpenHouzConstants;
 import com.technawabs.openhouz.R;
 import com.technawabs.openhouz.models.Message;
+import com.technawabs.openhouz.views.uicomponents.TypeWriter;
 
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
 
+    private final int BOT = 0;
+    private final int USER = 1;
     private List<Message> messageList;
-    private String sender;
 
-    public MessageAdapter(List<Message> messageList, String sender) {
+    public MessageAdapter(List<Message> messageList) {
         this.messageList = messageList;
-        this.sender = sender;
     }
 
     @Override
     public MessageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = null;
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        switch (sender) {
-            case OpenHouzConstants.Sender.BOT:
+        switch (viewType) {
+            case BOT:
                 itemView = layoutInflater.inflate(R.layout.bot_message_bubble, parent, false);
                 break;
-            case OpenHouzConstants.Sender.USER:
+            case USER:
                 itemView = layoutInflater.inflate(R.layout.meessage_bubble, parent, false);
                 break;
         }
@@ -42,13 +44,27 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     @Override
     public void onBindViewHolder(MessageViewHolder holder, int position) {
         final Message message = messageList.get(position);
-        switch (sender) {
+        switch (message.getSender()) {
             case OpenHouzConstants.Sender.BOT:
-                holder.botMessage.setText(message.getMessage());
+                holder.botMessage.setCharacterDelay(150);
+                if (messageList.size() == 1) {
+                    holder.botMessage.animateText(message.getMessage());
+                }
                 break;
             case OpenHouzConstants.Sender.USER:
                 holder.userMessage.setText(message.getMessage());
                 break;
+        }
+
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        final Message message = messageList.get(position);
+        if (message.getSender().equalsIgnoreCase(OpenHouzConstants.Sender.BOT)) {
+            return BOT;
+        } else {
+            return USER;
         }
 
     }
@@ -61,18 +77,20 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     public static class MessageViewHolder extends RecyclerView.ViewHolder {
 
         public Context context;
-        public TextView botMessage;
+        public TypeWriter botMessage;
         public ImageView botImage;
         public TextView userMessage;
         public ImageView userImage;
+        public EditText userTypedMessage;
 
         public MessageViewHolder(Context context, View itemView) {
             super(itemView);
             this.context = context;
-            botMessage = (TextView) itemView.findViewById(R.id.bot_message);
+            botMessage = (TypeWriter) itemView.findViewById(R.id.bot_message);
             botImage = (ImageView) itemView.findViewById(R.id.bot_image);
             userImage = (ImageView) itemView.findViewById(R.id.user_image);
             userMessage = (TextView) itemView.findViewById(R.id.user_message);
+            userTypedMessage = (EditText) itemView.findViewById(R.id.send_message_text);
         }
     }
 

@@ -12,4 +12,23 @@
     <string name="nearby_metro_text">Nearby Metro Stations</string>
     <string name="amenities_text">Amenities</string>
     <string name="restrictions_text">Restrictions</string>
+    <!--Bot questions-->
+    <string-array name="questions">
+        <item>@string/question1</item>
+        <item>@string/question2</item>
+        <item>@string/question3</item>
+        <item>@string/question4</item>
+    </string-array>
+    <string name="question1">Hi there, I am Alan. I am going to be your personal realtor and going to help you find a place.</string>
+    <string name="question2">What kind of apartment are you looking for?</string>
+    <string name="question3">In which area are you looking for? You can select multiple neighbourhoods</string>
+    <string name="question4">Ok, check these apartments out!</string>
+    <!--Hint text-->
+    <string-array name="wait_hints">
+        <item>@string/hint_wait_question1</item>
+        <item>@string/hint_question1_done</item>
+    </string-array>
+    <string name="hint_wait_question1">Alan is giving intro</string>
+    <string name="hint_question1_done">Say Hi Alan</string>
+
 </resources>

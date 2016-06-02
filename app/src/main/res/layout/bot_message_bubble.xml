@@ -1,49 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
 
     <com.technawabs.openhouz.views.uicomponents.RoundedImageView
         android:id="@+id/bot_image"
         android:layout_width="@dimen/text_30dip"
         android:layout_height="@dimen/text_30dip"
-        android:layout_marginLeft="@dimen/text_4dip"
-        android:layout_marginStart="@dimen/text_4dip"
-        android:layout_marginRight="@dimen/text_4dip"
-        android:layout_marginEnd="@dimen/text_4dip"
-        android:src="@mipmap/ic_launcher"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_marginBottom="10dp"
-        />
+        android:layout_marginEnd="@dimen/text_4dip"
+        android:layout_marginLeft="@dimen/text_4dip"
+        android:layout_marginRight="@dimen/text_4dip"
+        android:layout_marginStart="@dimen/text_4dip"
+        android:src="@mipmap/ic_launcher" />
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/message_card"
-        android:layout_width="match_parent"
+    <com.technawabs.openhouz.views.uicomponents.TypeWriter
+        android:id="@+id/bot_message"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/bot_image"
-        android:layout_toEndOf="@+id/bot_image"
-        app:cardCornerRadius="@dimen/text_40dip"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_vertical_margin"
         android:layout_marginEnd="@dimen/activity_vertical_margin"
-        >
-        <TextView
-            android:id="@+id/bot_message"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/solid_ellipse_gray"
-            android:textColor="@color/black"
-            android:text="sfd"
-            android:textSize="@dimen/text_20sp"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingStart="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingEnd="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_horizontal_margin"
-            android:paddingBottom="@dimen/activity_horizontal_margin"
-            />
-    </android.support.v7.widget.CardView>
-
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_toEndOf="@+id/bot_image"
+        android:layout_toRightOf="@+id/bot_image"
+        android:background="@drawable/solid_ellipse_gray"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingEnd="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_vertical_margin"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:text="sfd"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_20sp" />
 </RelativeLayout>
