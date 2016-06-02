@@ -7,8 +7,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.technawabs.openhouz.R;
+import com.technawabs.openhouz.constants.OpenHouzConstants;
 import com.technawabs.openhouz.models.Message;
+import com.technawabs.openhouz.views.adapters.MessageAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PropertiesActivity extends AppCompatActivity {
@@ -18,7 +21,8 @@ public class PropertiesActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private List<Message> messageList;
     private ProgressDialog progressDialog;
-    
+    private MessageAdapter messageAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,5 +33,13 @@ public class PropertiesActivity extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(this.getApplicationContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(linearLayoutManager);
+        messageList = new ArrayList<>();
+        messageAdapter = new MessageAdapter(messageList, OpenHouzConstants.Sender.BOT);
+        for (int i = 0; i < 5; i++) {
+            final Message message = new Message();
+            message.setMessage("Hi " + i);
+            messageList.add(message);
+        }
+        recList.setAdapter(messageAdapter);
     }
 }
