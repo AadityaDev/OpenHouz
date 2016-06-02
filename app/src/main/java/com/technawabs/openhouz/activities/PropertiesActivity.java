@@ -16,7 +16,7 @@ import java.util.List;
 
 public class PropertiesActivity extends AppCompatActivity {
 
-    private final String TAG = this.getLocalClassName();
+    private final String TAG = this.getClass().getName();
     private RecyclerView recList;
     private LinearLayoutManager linearLayoutManager;
     private List<Message> messageList;
