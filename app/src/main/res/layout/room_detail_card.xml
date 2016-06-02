@@ -6,16 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true"
-    app:elevation="0dp"
-    card_view:cardCornerRadius="@dimen/text_4dp">
+    app:elevation="0dip"
+    card_view:cardCornerRadius="@dimen/text_4dip">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/text_8dp"
-        android:layout_marginStart="@dimen/text_8dp"
-        android:layout_marginRight="@dimen/text_8dp"
-        android:layout_marginEnd="@dimen/text_8dp"
+        android:layout_marginLeft="@dimen/text_8dip"
+        android:layout_marginStart="@dimen/text_8dip"
+        android:layout_marginRight="@dimen/text_8dip"
+        android:layout_marginEnd="@dimen/text_8dip"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         >
@@ -45,7 +45,7 @@
         <TextView
             android:id="@+id/line_space"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/text_2dp"
+            android:layout_height="@dimen/text_2dip"
             android:layout_below="@+id/room_detail"
             android:singleLine="true"
             android:layout_marginTop="@dimen/activity_horizontal_margin"

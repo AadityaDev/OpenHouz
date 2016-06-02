@@ -27,19 +27,19 @@
 
         <ImageView
             android:id="@+id/send_feedback"
-            android:layout_width="@dimen/text_48dp"
-            android:layout_height="@dimen/text_48dp"
+            android:layout_width="@dimen/text_48dip"
+            android:layout_height="@dimen/text_48dip"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true" />
 
         <ImageView
             android:id="@+id/close_feedback"
-            android:layout_width="@dimen/text_48dp"
-            android:layout_height="@dimen/text_48dp"
+            android:layout_width="@dimen/text_48dip"
+            android:layout_height="@dimen/text_48dip"
             android:layout_toLeftOf="@+id/send_feedback"
             android:layout_toStartOf="@+id/send_feedback"
-            android:layout_marginRight="@dimen/text_30dp"
-            android:layout_marginEnd="@dimen/text_30dp"
+            android:layout_marginRight="@dimen/text_30dip"
+            android:layout_marginEnd="@dimen/text_30dip"
             />
 
     </RelativeLayout>
@@ -98,7 +98,7 @@
     <ImageView
         android:id="@+id/background_image"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="200dip"
         android:background="@drawable/home_background"
         android:layout_alignParentBottom="true"
         />

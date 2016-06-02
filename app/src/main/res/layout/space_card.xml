@@ -6,16 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true"
-    app:elevation="0dp"
-    card_view:cardCornerRadius="@dimen/text_4dp">
+    app:elevation="0dip"
+    card_view:cardCornerRadius="@dimen/text_4dip">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/text_8dp"
-        android:paddingStart="@dimen/text_8dp"
-        android:paddingRight="@dimen/text_8dp"
-        android:paddingEnd="@dimen/text_8dp"
+        android:paddingLeft="@dimen/text_8dip"
+        android:paddingStart="@dimen/text_8dip"
+        android:paddingRight="@dimen/text_8dip"
+        android:paddingEnd="@dimen/text_8dip"
         android:paddingTop="@dimen/activity_horizontal_margin"
         >
 
