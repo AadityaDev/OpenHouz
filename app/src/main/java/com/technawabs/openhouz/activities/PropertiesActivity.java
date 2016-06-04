@@ -7,6 +7,8 @@ import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,6 +33,11 @@ public class PropertiesActivity extends AppCompatActivity {
     private MessageAdapter messageAdapter;
     private EditText userTypedMessage;
     private ImageView sendUserMessage;
+    private int groupId = 1;
+    private int newSearchMenu = Menu.FIRST;
+    private int viewingsMenu = Menu.FIRST + 1;
+    private int feedbackMenu = Menu.FIRST + 2;
+    private int aboutMenu = Menu.FIRST + 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +73,31 @@ public class PropertiesActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(groupId, newSearchMenu, newSearchMenu, "");
+        menu.add(groupId, viewingsMenu, viewingsMenu, "");
+        menu.add(groupId, feedbackMenu, feedbackMenu, "");
+        menu.add(groupId, aboutMenu, aboutMenu, "");
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return true;
+            case 4:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private void setHintText() {
         switch (messageList.size()) {
             case 1:
@@ -79,7 +111,7 @@ public class PropertiesActivity extends AppCompatActivity {
                 }
                 break;
             case 3:
-                if (!messageList.get(2).getMessage().equalsIgnoreCase("Hi Alan")){
+                if (!messageList.get(2).getMessage().equalsIgnoreCase("Hi Alan")) {
 //                    messageList.add()
                 }
                 break;
