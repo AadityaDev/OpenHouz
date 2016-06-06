@@ -5,62 +5,81 @@
     android:layout_height="match_parent"
     tools:context=".activities.PropertyDetail">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/property_tour_card"
+                    layout="@layout/property_tour_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"></include>
+
+                <include
+                    android:id="@+id/property_info_card"
+                    layout="@layout/property_info_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/property_tour_card"></include>
+
+                <include
+                    android:id="@+id/space_card"
+                    layout="@layout/space_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/property_info_card"></include>
+
+                <include
+                    android:id="@+id/building_specs_card"
+                    layout="@layout/building_specs_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/space_card"></include>
+
+                <include
+                    android:id="@+id/metro_stations_card"
+                    layout="@layout/metro_stations_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/building_specs_card"></include>
+
+                <include
+                    android:id="@+id/amenities_card"
+                    layout="@layout/amenities_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_below="@+id/metro_stations_card"></include>
+
+                <include
+                    android:id="@+id/restrictions_card"
+                    layout="@layout/restrictions_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/amenities_card"></include>
+            </RelativeLayout>
+        </ScrollView>
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="@dimen/text_48dip"
+            android:layout_alignParentBottom="true">
 
-            <include
-                android:id="@+id/property_tour_card"
-                layout="@layout/property_tour_card"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="300dp"></include>
-
-            <include
-                android:id="@+id/property_info_card"
-                layout="@layout/property_info_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/property_tour_card"></include>
-
-            <include
-                android:id="@+id/space_card"
-                layout="@layout/space_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/property_info_card"></include>
-
-            <include
-                android:id="@+id/building_specs_card"
-                layout="@layout/building_specs_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/space_card"></include>
-
-            <include
-                android:id="@+id/metro_stations_card"
-                layout="@layout/metro_stations_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/building_specs_card"></include>
-
-            <include
-                android:id="@+id/amenities_card"
-                layout="@layout/amenities_card"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_below="@+id/metro_stations_card"></include>
-
-            <include
-                android:id="@+id/restrictions_card"
-                layout="@layout/restrictions_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/amenities_card"></include>
-
+                android:layout_height="match_parent"
+                android:text="ScheduleViewing"
+                android:gravity="center"
+                />
         </RelativeLayout>
-    </ScrollView>
+    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

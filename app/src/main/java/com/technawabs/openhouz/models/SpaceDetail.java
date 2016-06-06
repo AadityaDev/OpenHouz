@@ -4,13 +4,13 @@ public class SpaceDetail {
 
     public int numOfBedrooms;
     public int numOfBathrooms;
-    private boolean isFurnished;
-    private String propertyType;
-    private String availableDate;
-    private boolean isHelperRoomAvailable;
-    private boolean isGasPipelineAvailable;
-    private String deposit;
-    private String minimumStay;
+    public boolean isFurnished;
+    public String propertyType;
+    public String availableDate;
+    public boolean isHelperRoomAvailable;
+    public boolean isGasPipelineAvailable;
+    public String deposit;
+    public String minimumStay;
 
     public int getNumOfBedrooms() {
         return numOfBedrooms;

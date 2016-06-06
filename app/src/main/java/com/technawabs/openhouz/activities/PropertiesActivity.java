@@ -1,6 +1,7 @@
 package com.technawabs.openhouz.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.ActionMenuItemView;
@@ -16,7 +17,7 @@ import android.widget.Toast;
 
 import com.technawabs.openhouz.R;
 import com.technawabs.openhouz.constants.OpenHouzConstants;
-import com.technawabs.openhouz.models.Message;
+import com.technawabs.openhouz.models.*;
 import com.technawabs.openhouz.utils.Utility;
 import com.technawabs.openhouz.views.adapters.MessageAdapter;
 
@@ -33,11 +34,6 @@ public class PropertiesActivity extends AppCompatActivity {
     private MessageAdapter messageAdapter;
     private EditText userTypedMessage;
     private ImageView sendUserMessage;
-    private int groupId = 1;
-    private int newSearchMenu = Menu.FIRST;
-    private int viewingsMenu = Menu.FIRST + 1;
-    private int feedbackMenu = Menu.FIRST + 2;
-    private int aboutMenu = Menu.FIRST + 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,23 +71,26 @@ public class PropertiesActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(groupId, newSearchMenu, newSearchMenu, "");
-        menu.add(groupId, viewingsMenu, viewingsMenu, "");
-        menu.add(groupId, feedbackMenu, feedbackMenu, "");
-        menu.add(groupId, aboutMenu, aboutMenu, "");
-        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main,menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case 1:
+            case R.id.action_search:
+                startActivity(new Intent(PropertiesActivity.this, PropertyDetail.class));
+                finish();
                 return true;
-            case 2:
+            case R.id.action_viewings:
+                startActivity(new Intent(PropertiesActivity.this,PropertiesActivity.class));
+                finish();
                 return true;
-            case 3:
+            case R.id.action_feedback:
+                startActivity(new Intent(PropertiesActivity.this,FeedbackActivity.class));
+                finish();
                 return true;
-            case 4:
+            case R.id.action_about:
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
