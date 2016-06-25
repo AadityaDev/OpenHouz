@@ -79,7 +79,7 @@ public class PropertyDetail extends AppCompatActivity {
         spaceDetail.setFurnished(true);
         spaceDetail.setGasPipelineAvailable(true);
         spaceDetail.setMinimumStay("3 dats");
-        GenericArrayAdapter genericArrayAdapter = new GenericArrayAdapter(PropertyDetail.this, Utility.getArrayForSpaceDetail(spaceDetail));
+        GenericArrayAdapter genericArrayAdapter = new GenericArrayAdapter(PropertyDetail.this, Utility.getArrayForSpaceDetail(spaceDetail),0);
         ListView spaceDetails = (ListView) findViewById(R.id.space_detail_list);
         spaceDetails.setAdapter(genericArrayAdapter);
         genericArrayAdapter.notifyDataSetChanged();
@@ -95,7 +95,7 @@ public class PropertyDetail extends AppCompatActivity {
         buildingSpecs.setCarPark(4);
         buildingSpecs.setFloor("3");
         buildingSpecs.setSize("4");
-        GenericArrayAdapter genericArrayAdapter = new GenericArrayAdapter(PropertyDetail.this, Utility.getArrayForBuildingSpecs(buildingSpecs));
+        GenericArrayAdapter genericArrayAdapter = new GenericArrayAdapter(PropertyDetail.this, Utility.getArrayForBuildingSpecs(buildingSpecs),0);
         ListView buildingSpecList = (ListView) findViewById(R.id.building_specs_list);
         buildingSpecList.setAdapter(genericArrayAdapter);
         genericArrayAdapter.notifyDataSetChanged();
@@ -111,7 +111,7 @@ public class PropertyDetail extends AppCompatActivity {
             metroStation.setMetroStationName("Rohini" + i);
             metroStationList.add(metroStation);
         }
-        GenericArrayAdapter genericArrayAdapter = new GenericArrayAdapter(PropertyDetail.this, Utility.getArrayForMetroStations(metroStationList));
+        GenericArrayAdapter genericArrayAdapter = new GenericArrayAdapter(PropertyDetail.this, Utility.getArrayForMetroStations(metroStationList),0);
         ListView metroStations = (ListView) findViewById(R.id.metrostations_list);
         metroStations.setAdapter(genericArrayAdapter);
         genericArrayAdapter.notifyDataSetChanged();
@@ -126,7 +126,7 @@ public class PropertyDetail extends AppCompatActivity {
             restriction = "No House Party";
             restrictionList.add(restriction);
         }
-        GenericArrayAdapter genericArrayAdapter = new GenericArrayAdapter(PropertyDetail.this, Utility.getArrayForRestrictions(restrictionList));
+        GenericArrayAdapter genericArrayAdapter = new GenericArrayAdapter(PropertyDetail.this, Utility.getArrayForRestrictions(restrictionList),0);
         ListView restrictions = (ListView) findViewById(R.id.restrictions_list);
         restrictions.setAdapter(genericArrayAdapter);
         genericArrayAdapter.notifyDataSetChanged();

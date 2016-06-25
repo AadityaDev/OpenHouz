@@ -1,12 +1,13 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dip</dimen>
     <dimen name="activity_vertical_margin">16dip</dimen>
-    <dimen name="text_48dip">48dip</dimen>
-    <dimen name="text_30dip">30dip</dimen>
-    <dimen name="text_8dip">8dip</dimen>
-    <dimen name="text_4dip">4dip</dimen>
-    <dimen name="text_2dip">2dip</dimen>
-    <dimen name="text_40dip">30dip</dimen>
+    <dimen name="text_60dp">60dp</dimen>
+    <dimen name="text_48dip">48dp</dimen>
+    <dimen name="text_30dip">30dp</dimen>
+    <dimen name="text_8dip">8dp</dimen>
+    <dimen name="text_4dip">4dp</dimen>
+    <dimen name="text_2dip">2dp</dimen>
+    <dimen name="text_40dip">30dp</dimen>
     <dimen name="text_24sp">24sp</dimen>
     <dimen name="text_22sp">22sp</dimen>
     <dimen name="text_20sp">20sp</dimen>

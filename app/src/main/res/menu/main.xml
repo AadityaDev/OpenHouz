@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        android:title="New Search" />
+    <item
+        android:id="@+id/action_viewings"
+        android:orderInCategory="100"
+        android:title="Viewings" />
+    <item
+        android:id="@+id/action_feedback"
+        android:orderInCategory="100"
+        android:title="Feedback" />
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="100"
+        android:title="About OpenHouz" />
+</menu>

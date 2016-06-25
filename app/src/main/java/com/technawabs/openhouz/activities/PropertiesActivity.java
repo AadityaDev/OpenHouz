@@ -2,6 +2,7 @@ package com.technawabs.openhouz.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.ActionMenuItemView;
@@ -34,6 +35,7 @@ public class PropertiesActivity extends AppCompatActivity {
     private MessageAdapter messageAdapter;
     private EditText userTypedMessage;
     private ImageView sendUserMessage;
+    private Handler mHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,27 +48,33 @@ public class PropertiesActivity extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(linearLayoutManager);
         messageList = new ArrayList<>();
-        messageAdapter = new MessageAdapter(messageList);
+        messageAdapter = new MessageAdapter(PropertiesActivity.this,messageList);
         messageList.add(Utility.botSentMessage(getResources().obtainTypedArray(R.array.questions).getText(0).toString()));
         recList.setAdapter(messageAdapter);
-        //set hint
-        userTypedMessage = (EditText) findViewById(R.id.send_message_text);
-        setHintText();
-        //send message
-        sendUserMessage = (ImageView) findViewById(R.id.send_message);
-        sendUserMessage.setOnClickListener(new View.OnClickListener() {
+        mHandler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(userTypedMessage.getText())) {
-                    Toast.makeText(getApplicationContext(), "Please write something", Toast.LENGTH_SHORT).show();
-                } else {
-                    messageList.add(Utility.userSentMessage(userTypedMessage.getText().toString()));
-                    messageAdapter.notifyDataSetChanged();
-                    userTypedMessage.setText("");
-                    setHintText();
-                }
+            public void run() {
+                sendMessage(messageAdapter);
             }
-        });
+        },5300);
+        //set hint
+//        userTypedMessage = (EditText) findViewById(R.id.send_message_text);
+//        setHintText();
+        //send message
+//        sendUserMessage = (ImageView) findViewById(R.id.send_message);
+//        sendUserMessage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (TextUtils.isEmpty(userTypedMessage.getText())) {
+//                    Toast.makeText(getApplicationContext(), "Please write something", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    messageList.add(Utility.userSentMessage(userTypedMessage.getText().toString()));
+//                    messageAdapter.notifyDataSetChanged();
+//                    userTypedMessage.setText("");
+//                    setHintText();
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -110,12 +118,28 @@ public class PropertiesActivity extends AppCompatActivity {
                 }
                 break;
             case 3:
-                if (!messageList.get(2).getMessage().equalsIgnoreCase("Hi Alan")) {
-//                    messageList.add()
-                }
+//                if (!messageList.get(2).getMessage().equalsIgnoreCase("Hi Alan")) {
+////                    messageList.add()
+//                }
                 break;
         }
     }
 
+    private void sendMessage(MessageAdapter messageAdapter){
+        switch (messageAdapter.getItemCount()){
+            case 1:
+//                messageList.add(Utility.botSentMessage(getResources().obtainTypedArray(R.array.questions).getText(1).toString()));
+                Message message=new Message();
+                message.setSender(OpenHouzConstants.ApartmentProperties.TYPE);
+                message.setMessage(getResources().obtainTypedArray(R.array.questions).getText(1).toString());
+                messageList.add(message);
+                messageAdapter.notifyDataSetChanged();
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    }
 
 }
