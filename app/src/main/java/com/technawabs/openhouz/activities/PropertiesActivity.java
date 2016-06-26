@@ -77,20 +77,7 @@ public class PropertiesActivity extends AppCompatActivity {
         action.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int count = 0;
-                final int size = messageAdapter.getListView(OpenHouzConstants.APARTMENT_TYPE).getChildCount();
-                for (int i = 0; i < size; i++) {
-                    RelativeLayout relativeLayout = (RelativeLayout) messageAdapter.getListView(OpenHouzConstants.APARTMENT_TYPE).getChildAt(i);
-                    ToggleButton toggleButton = (ToggleButton) relativeLayout.getChildAt(0);
-                    if (toggleButton.isChecked()) {
-                        count++;
-                    }
-                }
-                Log.d(TAG, "Type Checked: " + count);
-                Log.d(TAG, "ItemList" + messageAdapter.getArrayList(OpenHouzConstants.APARTMENT_TYPE).size());
-                if (count > 0) {
-                    sendMessage(messageAdapter);
-                }
+                getSelectedApartmentOptions(OpenHouzConstants.ApartmentProperties.TYPE);
             }
         });
         //set hint
@@ -174,7 +161,7 @@ public class PropertiesActivity extends AppCompatActivity {
     public void getSelectedApartmentOptions(String property) {
         switch (property) {
             case OpenHouzConstants.ApartmentProperties.TYPE:
-                getSelectedValue(messageAdapter.getListView(OpenHouzConstants.APARTMENT_TYPE));
+                getSelectedValue(OpenHouzConstants.APARTMENT_TYPE);
                 break;
             case OpenHouzConstants.ApartmentProperties.NEIGHBOURHOODS:
                 break;
