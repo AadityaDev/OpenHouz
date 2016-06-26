@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.technawabs.openhouz.R;
 import com.technawabs.openhouz.constants.OpenHouzConstants;
 import com.technawabs.openhouz.models.GenericArrayItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GenericArrayAdapter<T> extends ArrayAdapter<T> {
@@ -28,19 +31,38 @@ public class GenericArrayAdapter<T> extends ArrayAdapter<T> {
     public View getView(int position, View convertView, ViewGroup parent) {
         final GenericArrayItem genericArrayItem = (GenericArrayItem) objects.get(position);
         switch (type) {
-//            case OpenHouzConstants.APARTMENT_BUDGET:
-//                break;
+            case OpenHouzConstants.APARTMENT_BUDGET:
+                if (convertView == null) {
+                    convertView = LayoutInflater.from(getContext()).inflate(R.layout.apartment_type_item, parent, false);
+                }
+                TextView apartmentBudget = (TextView) convertView.findViewById(R.id.room_type);
+                apartmentBudget.setText(genericArrayItem.getItemTitle());
+                return convertView;
             case OpenHouzConstants.APARTMENT_NEIGHBOURHOODS:
                 if (convertView == null) {
-                    convertView = LayoutInflater.from(getContext()).inflate(R.layout.apartment_neighbourhood_item, parent, false);
+                    convertView = LayoutInflater.from(getContext()).inflate(R.layout.apartment_type_item, parent, false);
                 }
+                TextView apartmentNeighbourhood = (TextView) convertView.findViewById(R.id.room_type);
+                apartmentNeighbourhood.setText(genericArrayItem.getItemTitle());
                 return convertView;
             case OpenHouzConstants.APARTMENT_TYPE:
                 if (convertView == null) {
                     convertView = LayoutInflater.from(getContext()).inflate(R.layout.apartment_type_item, parent, false);
                 }
-                TextView apartmentType = (TextView) convertView.findViewById(R.id.room_type);
+                final ToggleButton apartmentType = (ToggleButton) convertView.findViewById(R.id.room_type);
                 apartmentType.setText(genericArrayItem.getItemTitle());
+                apartmentType.setTextOn(genericArrayItem.getItemTitle());
+                apartmentType.setTextOff(genericArrayItem.getItemTitle());
+                apartmentType.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (apartmentType.isChecked() == true) {
+                            genericArrayItem.setItemValue("true");
+                        } else {
+                            genericArrayItem.setItemValue("false");
+                        }
+                    }
+                });
                 return convertView;
             default:
                 if (convertView == null) {
@@ -52,6 +74,19 @@ public class GenericArrayAdapter<T> extends ArrayAdapter<T> {
                 textValue.setText(genericArrayItem.getItemValue());
                 return convertView;
         }
+    }
+
+    public List<GenericArrayItem> getValues(){
+        List<GenericArrayItem> list=new ArrayList<>();
+        switch (type){
+            case OpenHouzConstants.APARTMENT_TYPE:
+                for(int i=0;i<objects.size();i++){
+                    final GenericArrayItem genericArrayItem = (GenericArrayItem) objects.get(i);
+                    list.add(genericArrayItem);
+                }
+                break;
+        }
+        return list;
     }
 
 }

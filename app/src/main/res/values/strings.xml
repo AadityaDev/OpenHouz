@@ -18,11 +18,13 @@
         <item>@string/question2</item>
         <item>@string/question3</item>
         <item>@string/question4</item>
+        <item>@string/question5</item>
     </string-array>
     <string name="question1">Hi there, I am Alan. I am going to be your personal realtor and going to help you find a place.</string>
     <string name="question2">What kind of apartment are you looking for?</string>
     <string name="question3">In which area are you looking for? You can select multiple neighbourhoods</string>
-    <string name="question4">Ok, check these apartments out!</string>
+    <string name="question4">What is your budget?</string>
+    <string name="question5">Ok, check these apartments out!</string>
     <!--Hint text-->
     <string-array name="wait_hints">
         <item>@string/hint_wait_question1</item>

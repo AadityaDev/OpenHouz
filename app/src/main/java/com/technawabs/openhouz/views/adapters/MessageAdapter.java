@@ -5,13 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.technawabs.openhouz.constants.OpenHouzConstants;
 import com.technawabs.openhouz.R;
+import com.technawabs.openhouz.models.GenericArrayItem;
 import com.technawabs.openhouz.models.Message;
 import com.technawabs.openhouz.utils.Utility;
 import com.technawabs.openhouz.views.uicomponents.TypeWriter;
@@ -21,11 +21,11 @@ import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
 
-    private Context context;
     private List<Message> messageList;
+    public static GenericArrayAdapter typeArrayAdapter;
+    public MessageViewHolder messageViewHolder;
 
-    public MessageAdapter(Context context, List<Message> messageList) {
-        this.context=context;
+    public MessageAdapter(List<Message> messageList) {
         this.messageList = messageList;
     }
 
@@ -41,14 +41,17 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 itemView = layoutInflater.inflate(R.layout.meessage_bubble, parent, false);
                 break;
             case OpenHouzConstants.APARTMENT_BUDGET:
+                itemView = layoutInflater.inflate(R.layout.property_rooms_list, parent, false);
                 break;
             case OpenHouzConstants.APARTMENT_NEIGHBOURHOODS:
+                itemView = layoutInflater.inflate(R.layout.property_rooms_list, parent, false);
                 break;
             case OpenHouzConstants.APARTMENT_TYPE:
                 itemView = layoutInflater.inflate(R.layout.property_rooms_list, parent, false);
                 break;
         }
-        return new MessageViewHolder(parent.getContext(), itemView);
+        messageViewHolder = new MessageViewHolder(parent.getContext(), itemView);
+        return messageViewHolder;
     }
 
     @Override
@@ -68,13 +71,15 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 break;
             case OpenHouzConstants.ApartmentProperties.BUDGET:
                 holder.botMessage.setText(message.getMessage());
+                setupApartmentProperty(OpenHouzConstants.ApartmentProperties.BUDGET);
                 break;
             case OpenHouzConstants.ApartmentProperties.NEIGHBOURHOODS:
                 holder.botMessage.setText(message.getMessage());
+                setupApartmentProperty(OpenHouzConstants.ApartmentProperties.NEIGHBOURHOODS);
                 break;
             case OpenHouzConstants.ApartmentProperties.TYPE:
                 holder.botMessage.setText(message.getMessage());
-                setupApartmentType(holder);
+                setupApartmentProperty(OpenHouzConstants.ApartmentProperties.TYPE);
                 break;
         }
 
@@ -104,17 +109,89 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         return messageList.size();
     }
 
-    public void setupApartmentType(MessageViewHolder holder) {
+    @Override
+    public long getItemId(int position) {
+        return messageList.get(position).getId();
+    }
+
+    public void setupApartmentProperty(String type) {
         List<String> restrictionList = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            String restriction = new String();
-            restriction = "No House Party";
-            restrictionList.add(restriction);
+        switch (type) {
+            case OpenHouzConstants.ApartmentProperties.BUDGET:
+                for (int i = 0; i < 6; i++) {
+                    String restriction = new String();
+                    restriction = "No House Party";
+                    restrictionList.add(restriction);
+                }
+                GenericArrayAdapter genericArrayAdapter = new GenericArrayAdapter(messageViewHolder.context, Utility.getArrayForRestrictions(restrictionList), OpenHouzConstants.APARTMENT_BUDGET);
+                messageViewHolder.apartmentBudget.setAdapter(genericArrayAdapter);
+                if (messageList.size() == 4) {
+                    Utility.setListViewHeightBasedOnChildrenHalf(messageViewHolder.apartmentNeighbourhoods);
+                } else {
+                    Utility.setListViewHeightBasedOnChildrenHalf(messageViewHolder.apartmentBudget);
+                }
+                break;
+            case OpenHouzConstants.ApartmentProperties.NEIGHBOURHOODS:
+                for (int i = 0; i < 2; i++) {
+                    String restriction = new String();
+                    restriction = "No House Party";
+                    restrictionList.add(restriction);
+                }
+                GenericArrayAdapter neigbourhoodAdapter = new GenericArrayAdapter(messageViewHolder.context, Utility.getArrayForRestrictions(restrictionList), OpenHouzConstants.APARTMENT_NEIGHBOURHOODS);
+                messageViewHolder.apartmentNeighbourhoods.setAdapter(neigbourhoodAdapter);
+                if (messageList.size() == 3) {
+                    Utility.setListViewHeightBasedOnChildrenHalf(messageViewHolder.apartmentNeighbourhoods);
+                } else {
+                    Utility.setListViewHeightBasedOnChildren(messageViewHolder.apartmentNeighbourhoods);
+                }
+                break;
+            case OpenHouzConstants.ApartmentProperties.TYPE:
+                for (int i = 0; i < 6; i++) {
+                    String restriction = new String();
+                    restriction = "No House Party";
+                    restrictionList.add(restriction);
+                }
+                typeArrayAdapter = new GenericArrayAdapter(messageViewHolder.context, Utility.getArrayForRestrictions(restrictionList), OpenHouzConstants.APARTMENT_TYPE);
+                messageViewHolder.apartmentTypes.setAdapter(typeArrayAdapter);
+                typeArrayAdapter.notifyDataSetChanged();
+                if (messageList.size() == 2) {
+                    Utility.setListViewHeightBasedOnChildrenHalf(messageViewHolder.apartmentTypes);
+                } else {
+                    Utility.setListViewHeightBasedOnChildren(messageViewHolder.apartmentTypes);
+                }
+                break;
         }
-        GenericArrayAdapter genericArrayAdapter = new GenericArrayAdapter(holder.context, Utility.getArrayForRestrictions(restrictionList), OpenHouzConstants.APARTMENT_TYPE);
-        holder.apartmentTypes.setAdapter(genericArrayAdapter);
-        genericArrayAdapter.notifyDataSetChanged();
-        Utility.setListViewHeightBasedOnChildren(holder.apartmentTypes);
+    }
+
+    public ListView getListView(int type) {
+        ListView listView = null;
+        switch (type) {
+            case OpenHouzConstants.APARTMENT_BUDGET:
+                listView = messageViewHolder.apartmentBudget;
+                break;
+            case OpenHouzConstants.APARTMENT_NEIGHBOURHOODS:
+                listView = messageViewHolder.apartmentNeighbourhoods;
+                break;
+            case OpenHouzConstants.APARTMENT_TYPE:
+                listView = messageViewHolder.apartmentTypes;
+                break;
+        }
+        return listView;
+    }
+
+    public List<GenericArrayItem> getArrayList(int type) {
+        List<GenericArrayItem> genericArrayItemList = new ArrayList<GenericArrayItem>();
+        switch (type) {
+            case OpenHouzConstants.APARTMENT_BUDGET:
+                break;
+            case OpenHouzConstants.APARTMENT_NEIGHBOURHOODS:
+                genericArrayItemList.addAll(typeArrayAdapter.getValues());
+                break;
+            case OpenHouzConstants.APARTMENT_TYPE:
+                genericArrayItemList.addAll(typeArrayAdapter.getValues());
+                break;
+        }
+        return genericArrayItemList;
     }
 
     public static class MessageViewHolder extends RecyclerView.ViewHolder {
@@ -135,8 +212,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             botImage = (ImageView) itemView.findViewById(R.id.bot_image);
             userImage = (ImageView) itemView.findViewById(R.id.user_image);
             userMessage = (TextView) itemView.findViewById(R.id.user_message);
+            apartmentBudget = (ListView) itemView.findViewById(R.id.room_type_list);
+            apartmentNeighbourhoods = (ListView) itemView.findViewById(R.id.room_type_list);
             apartmentTypes = (ListView) itemView.findViewById(R.id.room_type_list);
         }
     }
-
 }
