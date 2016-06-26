@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,7 +23,7 @@ import java.util.List;
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
 
     private List<Message> messageList;
-    public static GenericArrayAdapter typeArrayAdapter;
+    public GenericArrayAdapter typeArrayAdapter;
     public MessageViewHolder messageViewHolder;
 
     public MessageAdapter(List<Message> messageList) {
@@ -71,15 +72,21 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 break;
             case OpenHouzConstants.ApartmentProperties.BUDGET:
                 holder.botMessage.setText(message.getMessage());
-                setupApartmentProperty(OpenHouzConstants.ApartmentProperties.BUDGET);
+                if (messageList.size() == 4) {
+                    setupApartmentProperty(OpenHouzConstants.ApartmentProperties.BUDGET);
+                }
                 break;
             case OpenHouzConstants.ApartmentProperties.NEIGHBOURHOODS:
                 holder.botMessage.setText(message.getMessage());
-                setupApartmentProperty(OpenHouzConstants.ApartmentProperties.NEIGHBOURHOODS);
+                if (messageList.size() == 3) {
+                    setupApartmentProperty(OpenHouzConstants.ApartmentProperties.NEIGHBOURHOODS);
+                }
                 break;
             case OpenHouzConstants.ApartmentProperties.TYPE:
                 holder.botMessage.setText(message.getMessage());
-                setupApartmentProperty(OpenHouzConstants.ApartmentProperties.TYPE);
+                if (messageList.size() == 2) {
+                    setupApartmentProperty(OpenHouzConstants.ApartmentProperties.TYPE);
+                }
                 break;
         }
 
@@ -115,29 +122,29 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     }
 
     public void setupApartmentProperty(String type) {
-        List<String> restrictionList = new ArrayList<>();
+        List<String> optionsList = new ArrayList<>();
         switch (type) {
             case OpenHouzConstants.ApartmentProperties.BUDGET:
                 for (int i = 0; i < 6; i++) {
                     String restriction = new String();
-                    restriction = "No House Party";
-                    restrictionList.add(restriction);
+                    restriction = "20000-30000";
+                    optionsList.add(restriction);
                 }
-                GenericArrayAdapter genericArrayAdapter = new GenericArrayAdapter(messageViewHolder.context, Utility.getArrayForRestrictions(restrictionList), OpenHouzConstants.APARTMENT_BUDGET);
+                GenericArrayAdapter genericArrayAdapter = new GenericArrayAdapter(messageViewHolder.context, Utility.getArrayForRestrictions(optionsList), OpenHouzConstants.APARTMENT_BUDGET);
                 messageViewHolder.apartmentBudget.setAdapter(genericArrayAdapter);
                 if (messageList.size() == 4) {
                     Utility.setListViewHeightBasedOnChildrenHalf(messageViewHolder.apartmentNeighbourhoods);
                 } else {
-                    Utility.setListViewHeightBasedOnChildrenHalf(messageViewHolder.apartmentBudget);
+                    Utility.setListViewHeightBasedOnChildren(messageViewHolder.apartmentBudget);
                 }
                 break;
             case OpenHouzConstants.ApartmentProperties.NEIGHBOURHOODS:
                 for (int i = 0; i < 2; i++) {
                     String restriction = new String();
-                    restriction = "No House Party";
-                    restrictionList.add(restriction);
+                    restriction = "Metro station 1";
+                    optionsList.add(restriction);
                 }
-                GenericArrayAdapter neigbourhoodAdapter = new GenericArrayAdapter(messageViewHolder.context, Utility.getArrayForRestrictions(restrictionList), OpenHouzConstants.APARTMENT_NEIGHBOURHOODS);
+                GenericArrayAdapter neigbourhoodAdapter = new GenericArrayAdapter(messageViewHolder.context, Utility.getArrayForRestrictions(optionsList), OpenHouzConstants.APARTMENT_NEIGHBOURHOODS);
                 messageViewHolder.apartmentNeighbourhoods.setAdapter(neigbourhoodAdapter);
                 if (messageList.size() == 3) {
                     Utility.setListViewHeightBasedOnChildrenHalf(messageViewHolder.apartmentNeighbourhoods);
@@ -146,16 +153,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 }
                 break;
             case OpenHouzConstants.ApartmentProperties.TYPE:
-                for (int i = 0; i < 6; i++) {
+                for (int i = 0; i < 3; i++) {
                     String restriction = new String();
-                    restriction = "No House Party";
-                    restrictionList.add(restriction);
+                    restriction = "BHK " + i;
+                    optionsList.add(restriction);
                 }
-                typeArrayAdapter = new GenericArrayAdapter(messageViewHolder.context, Utility.getArrayForRestrictions(restrictionList), OpenHouzConstants.APARTMENT_TYPE);
+                typeArrayAdapter = new GenericArrayAdapter(messageViewHolder.context, Utility.getArrayForRestrictions(optionsList), OpenHouzConstants.APARTMENT_TYPE);
                 messageViewHolder.apartmentTypes.setAdapter(typeArrayAdapter);
                 typeArrayAdapter.notifyDataSetChanged();
                 if (messageList.size() == 2) {
-                    Utility.setListViewHeightBasedOnChildrenHalf(messageViewHolder.apartmentTypes);
+                    Utility.setListViewHeightBasedOnChildrenHalff(messageViewHolder.apartmentTypes);
                 } else {
                     Utility.setListViewHeightBasedOnChildren(messageViewHolder.apartmentTypes);
                 }
@@ -192,6 +199,24 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 break;
         }
         return genericArrayItemList;
+    }
+
+    public void setListViewHeightBasedOnChildrenHalf(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+        int totalHeight = 0;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST);
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += listItem.getMeasuredHeight() / 5;
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 
     public static class MessageViewHolder extends RecyclerView.ViewHolder {

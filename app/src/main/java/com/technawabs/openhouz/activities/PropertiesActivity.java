@@ -144,16 +144,19 @@ public class PropertiesActivity extends AppCompatActivity {
         switch (messageAdapter.getItemCount()) {
             case 1:
                 messageList.add(Utility.sendMessage(getResources().obtainTypedArray(R.array.questions).getText(1).toString(), OpenHouzConstants.ApartmentProperties.TYPE));
-                scrollView.fullScroll(View.FOCUS_DOWN);
-                setHintText();
+                messageAdapter.notifyDataSetChanged();
                 break;
             case 2:
                 messageList.add(Utility.sendMessage(getResources().obtainTypedArray(R.array.questions).getText(2).toString(), OpenHouzConstants.ApartmentProperties.NEIGHBOURHOODS));
-                scrollView.fullScroll(View.FOCUS_DOWN);
+                messageAdapter.notifyDataSetChanged();
                 break;
             case 3:
                 messageList.add(Utility.sendMessage(getResources().obtainTypedArray(R.array.questions).getText(3).toString(), OpenHouzConstants.ApartmentProperties.BUDGET));
-                scrollView.fullScroll(View.FOCUS_DOWN);
+                messageAdapter.notifyDataSetChanged();
+                break;
+            case 4:
+                messageList.add(Utility.sendMessage(getResources().obtainTypedArray(R.array.questions).getText(4).toString(), OpenHouzConstants.ApartmentProperties.BUDGET));
+                messageAdapter.notifyDataSetChanged();
                 break;
         }
     }
@@ -164,8 +167,10 @@ public class PropertiesActivity extends AppCompatActivity {
                 getSelectedValue(OpenHouzConstants.APARTMENT_TYPE);
                 break;
             case OpenHouzConstants.ApartmentProperties.NEIGHBOURHOODS:
+                getSelectedValue(OpenHouzConstants.APARTMENT_NEIGHBOURHOODS);
                 break;
             case OpenHouzConstants.ApartmentProperties.BUDGET:
+                getSelectedValue(OpenHouzConstants.APARTMENT_BUDGET);
                 break;
         }
     }

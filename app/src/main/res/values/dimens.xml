@@ -3,6 +3,7 @@
     <dimen name="activity_vertical_margin">16dip</dimen>
     <dimen name="text_60dp">60dp</dimen>
     <dimen name="text_48dip">48dp</dimen>
+    <dimen name="text_44dip">44dp</dimen>
     <dimen name="text_30dip">30dp</dimen>
     <dimen name="text_8dip">8dp</dimen>
     <dimen name="text_4dip">4dp</dimen>

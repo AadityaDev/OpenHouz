@@ -35,15 +35,19 @@ public class GenericArrayAdapter<T> extends ArrayAdapter<T> {
                 if (convertView == null) {
                     convertView = LayoutInflater.from(getContext()).inflate(R.layout.apartment_type_item, parent, false);
                 }
-                TextView apartmentBudget = (TextView) convertView.findViewById(R.id.room_type);
+                ToggleButton apartmentBudget = (ToggleButton) convertView.findViewById(R.id.room_type);
                 apartmentBudget.setText(genericArrayItem.getItemTitle());
+                apartmentBudget.setTextOn(genericArrayItem.getItemTitle());
+                apartmentBudget.setTextOff(genericArrayItem.getItemTitle());
                 return convertView;
             case OpenHouzConstants.APARTMENT_NEIGHBOURHOODS:
                 if (convertView == null) {
-                    convertView = LayoutInflater.from(getContext()).inflate(R.layout.apartment_type_item, parent, false);
+                    convertView = LayoutInflater.from(getContext()).inflate(R.layout.apartment_neighbourhood_item, parent, false);
                 }
-                TextView apartmentNeighbourhood = (TextView) convertView.findViewById(R.id.room_type);
+                ToggleButton apartmentNeighbourhood = (ToggleButton) convertView.findViewById(R.id.room_type);
                 apartmentNeighbourhood.setText(genericArrayItem.getItemTitle());
+                apartmentNeighbourhood.setTextOn(genericArrayItem.getItemTitle());
+                apartmentNeighbourhood.setTextOff(genericArrayItem.getItemTitle());
                 return convertView;
             case OpenHouzConstants.APARTMENT_TYPE:
                 if (convertView == null) {
