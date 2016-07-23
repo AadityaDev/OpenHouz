@@ -33,4 +33,7 @@
     <string name="hint_wait_question1">Alan is giving intro</string>
     <string name="hint_question1_done">Say Hi Alan</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
