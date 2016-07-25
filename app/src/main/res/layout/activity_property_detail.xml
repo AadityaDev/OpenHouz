@@ -71,7 +71,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/text_48dip"
+            android:layout_height="@dimen/dimen_48dp"
             android:layout_alignParentBottom="true">
 
             <TextView

@@ -7,15 +7,15 @@
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true"
     app:elevation="0dip"
-    card_view:cardCornerRadius="@dimen/text_4dip">
+    card_view:cardCornerRadius="@dimen/dimen_4dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/text_8dip"
-        android:paddingStart="@dimen/text_8dip"
-        android:paddingRight="@dimen/text_8dip"
-        android:paddingEnd="@dimen/text_8dip"
+        android:paddingLeft="@dimen/dimen_8dp"
+        android:paddingStart="@dimen/dimen_8dp"
+        android:paddingRight="@dimen/dimen_8dp"
+        android:paddingEnd="@dimen/dimen_8dp"
         android:paddingTop="@dimen/activity_horizontal_margin"
         android:paddingBottom="@dimen/activity_horizontal_margin"
         >
@@ -44,8 +44,8 @@
 
         <ImageView
             android:id="@+id/is_favorite_image"
-            android:layout_width="@dimen/text_48dip"
-            android:layout_height="@dimen/text_48dip"
+            android:layout_width="@dimen/dimen_48dp"
+            android:layout_height="@dimen/dimen_48dp"
             android:layout_centerInParent="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"

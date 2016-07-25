@@ -27,19 +27,19 @@
 
         <ImageView
             android:id="@+id/send_feedback"
-            android:layout_width="@dimen/text_48dp"
-            android:layout_height="@dimen/text_48dip"
+            android:layout_width="@dimen/dimen_48dp"
+            android:layout_height="@dimen/dimen_48dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true" />
 
         <ImageView
             android:id="@+id/close_feedback"
-            android:layout_width="@dimen/text_48dip"
-            android:layout_height="@dimen/text_48dip"
+            android:layout_width="@dimen/dimen_48dp"
+            android:layout_height="@dimen/dimen_48dp"
             android:layout_toLeftOf="@+id/send_feedback"
             android:layout_toStartOf="@+id/send_feedback"
-            android:layout_marginRight="@dimen/text_30dip"
-            android:layout_marginEnd="@dimen/text_30dip"
+            android:layout_marginRight="@dimen/dimen_30dp"
+            android:layout_marginEnd="@dimen/dimen_30dp"
             />
 
     </RelativeLayout>
