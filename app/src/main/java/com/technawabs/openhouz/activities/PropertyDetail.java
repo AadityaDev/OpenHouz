@@ -6,24 +6,19 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.LoginFilter;
 import android.util.Log;
 import android.widget.ListView;
 
 import com.technawabs.openhouz.R;
 import com.technawabs.openhouz.models.BuildingSpecs;
-import com.technawabs.openhouz.models.GenericArrayItem;
 import com.technawabs.openhouz.models.MetroStation;
 import com.technawabs.openhouz.models.SpaceDetail;
 import com.technawabs.openhouz.utils.Utility;
 import com.technawabs.openhouz.views.adapters.GenericArrayAdapter;
-import com.technawabs.openhouz.views.adapters.SpaceAdapter;
-import com.technawabs.openhouz.views.uicomponents.SlidingTabLayout;
+import com.technawabs.openhouz.views.uicomponents.tabs.SlidingTabLayout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.StringTokenizer;
 
 public class PropertyDetail extends AppCompatActivity {
 

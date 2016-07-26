@@ -1,0 +1,13 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.technawabs.openhouz.views.fragments.Upcoming">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/upcoming_viewing_property_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dimen_50dp"></android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

@@ -4,11 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.technawabs.openhouz.R;
+import com.technawabs.openhouz.views.uicomponents.tabs.SlidingTabLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +22,7 @@ import com.technawabs.openhouz.R;
  * Use the {@link ScheduledVisits#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ScheduledVisits extends Fragment {
+public class ScheduledVisits extends Fragment implements Viewed.OnFragmentInteractionListener, Upcoming.OnFragmentInteractionListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,6 +33,11 @@ public class ScheduledVisits extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private ViewPager pager;
+    private ViewPagerAdapter adapter;
+    private SlidingTabLayout tabs;
+    private CharSequence Titles[] = {"UPCOMING", "VIEWED"};
+    int NumbOfTabs = 2;
 
     public ScheduledVisits() {
         // Required empty public constructor
@@ -65,7 +74,27 @@ public class ScheduledVisits extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_scheduled_visits, container, false);
+        View view = inflater.inflate(R.layout.fragment_scheduled_visits, container, false);
+        //creating view pager adapter
+        adapter = new ViewPagerAdapter(getFragmentManager(), Titles, NumbOfTabs);
+
+        //Assign the viewpager view
+        pager = (ViewPager) view.findViewById(R.id.pager);
+        pager.setAdapter(adapter);
+        //Assign sliding tab layout
+        tabs = (SlidingTabLayout) view.findViewById(R.id.tabs);
+        tabs.setDistributeEvenly(true);
+
+        //setting custom color
+        tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+            @Override
+            public int getIndicatorColor(int position) {
+                return getResources().getColor(R.color.colorPrimaryDark);
+            }
+        });
+        tabs.setViewPager(pager);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -92,6 +121,11 @@ public class ScheduledVisits extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -105,5 +139,41 @@ public class ScheduledVisits extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+}
+
+class ViewPagerAdapter extends FragmentStatePagerAdapter {
+
+    CharSequence Titles[];
+    int NumbOfTabs;
+
+    public ViewPagerAdapter(FragmentManager fm, CharSequence mTitles[], int mNumbOfTabs) {
+        super(fm);
+        this.Titles = mTitles;
+        this.NumbOfTabs = mNumbOfTabs;
+    }
+
+    @Override
+    public Fragment getItem(int position) {
+        switch (position) {
+            case 0:
+                Upcoming inbox = new Upcoming();
+                return inbox;
+            case 1:
+                Viewed chat = new Viewed();
+                return chat;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public int getCount() {
+        return NumbOfTabs;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return Titles[position];
     }
 }

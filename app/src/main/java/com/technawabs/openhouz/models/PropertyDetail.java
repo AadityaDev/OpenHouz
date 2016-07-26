@@ -19,6 +19,8 @@ public class PropertyDetail {
     private String propertyBHK;
     private String propertyTitle;
     private String propertyLocation;
+    private transient int cardType;
+    private transient PropertyViewing propertyViewing;
 
     public long getId() {
         return this.id;
@@ -122,5 +124,21 @@ public class PropertyDetail {
 
     public void setPropertyLocation(String propertyLocation) {
         this.propertyLocation = propertyLocation;
+    }
+
+    public int getCardType() {
+        return this.cardType;
+    }
+
+    public void setCardType(int cardType) {
+        this.cardType = cardType;
+    }
+
+    public PropertyViewing getPropertyViewing() {
+        return this.propertyViewing;
+    }
+
+    public void setPropertyViewing(PropertyViewing propertyViewing) {
+        this.propertyViewing = propertyViewing;
     }
 }

@@ -19,4 +19,9 @@ public class OpenHouzConstants {
         public static final String BUDGET = "APARTMENT_BUDGET";
     }
 
+    public class CardType {
+        public static final int PROPERTY_CARD = 0;
+        public static final int UPCOMING_VIEWING_CARD = 1;
+        public static final int UPCOMING_VIEWED_CARD = 2;
+    }
 }
