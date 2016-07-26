@@ -6,6 +6,7 @@ import java.util.List;
 
 public class PropertyDetail {
 
+    private long id;
     private String locationName;
     private String price;
     private SpaceDetail spaceDetail;
@@ -14,6 +15,18 @@ public class PropertyDetail {
     private List<String> restrictions;
     private Location location;
     private boolean isFavorite;
+    private String propertyImageUrl;
+    private String propertyBHK;
+    private String propertyTitle;
+    private String propertyLocation;
+
+    public long getId() {
+        return this.id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getLocationName() {
         return locationName;
@@ -77,5 +90,37 @@ public class PropertyDetail {
 
     public void setFavorite(boolean favorite) {
         isFavorite = favorite;
+    }
+
+    public String getPropertyImageUrl() {
+        return this.propertyImageUrl;
+    }
+
+    public void setPropertyImageUrl(String propertyImageUrl) {
+        this.propertyImageUrl = propertyImageUrl;
+    }
+
+    public String getPropertyBHK() {
+        return this.propertyBHK;
+    }
+
+    public void setPropertyBHK(String propertyBHK) {
+        this.propertyBHK = propertyBHK;
+    }
+
+    public String getPropertyTitle() {
+        return this.propertyTitle;
+    }
+
+    public void setPropertyTitle(String propertyTitle) {
+        this.propertyTitle = propertyTitle;
+    }
+
+    public String getPropertyLocation() {
+        return this.propertyLocation;
+    }
+
+    public void setPropertyLocation(String propertyLocation) {
+        this.propertyLocation = propertyLocation;
     }
 }

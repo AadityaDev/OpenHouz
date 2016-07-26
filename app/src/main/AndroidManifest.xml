@@ -43,9 +43,9 @@
         <activity android:name=".activities.PropertiesActivity">
         </activity>
         <activity android:name=".activities.PropertyDetail">
-            <intent-filter>
-                <category android:name="com.google.intent.category.CARDBOARD" />
-            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<category android:name="com.google.intent.category.CARDBOARD" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".activities.FeedbackActivity" />
         <activity android:name=".activities.ScheduleViewing" />
