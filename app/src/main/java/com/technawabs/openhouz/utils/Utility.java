@@ -1,5 +1,7 @@
 package com.technawabs.openhouz.utils;
 
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
@@ -59,7 +61,7 @@ public class Utility {
         for (int i = 0; i < listAdapter.getCount(); i++) {
             View listItem = listAdapter.getView(i, null, listView);
             listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-            totalHeight += listItem.getMeasuredHeight()/5;
+            totalHeight += listItem.getMeasuredHeight() / 5;
         }
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
@@ -77,7 +79,7 @@ public class Utility {
         for (int i = 0; i < listAdapter.getCount(); i++) {
             View listItem = listAdapter.getView(i, null, listView);
             listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-            totalHeight += listItem.getMeasuredHeight()/1.8;
+            totalHeight += listItem.getMeasuredHeight() / 1.8;
         }
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
@@ -145,5 +147,11 @@ public class Utility {
             genericArrayItemList.add(genericArrayItem);
         }
         return genericArrayItemList;
+    }
+
+    public static SpannableString getUnderlinedText(String text) {
+        SpannableString spannableString = new SpannableString(text);
+        spannableString.setSpan(new UnderlineSpan(), 0, text.length(), 0);
+        return spannableString;
     }
 }

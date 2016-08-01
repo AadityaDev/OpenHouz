@@ -37,4 +37,11 @@
     <string name="bhk_text">BHK</string>
     <string name="rent_text">RENT</string>
 
+    <string name="when_text">When</string>
+    <string name="agent_text">Agent</string>
+    <string name="already_viewed">You already viewed this apartment</string>
+
+    <string name="cancel_viewing">Cancel Viewing</string>
+    <string name="get_directions">Get Directions</string>
 </resources>
+

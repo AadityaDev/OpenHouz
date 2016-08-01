@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +12,7 @@ import com.technawabs.openhouz.R;
 import com.technawabs.openhouz.constants.OpenHouzConstants;
 import com.technawabs.openhouz.models.PropertyDetail;
 import com.technawabs.openhouz.models.PropertyViewing;
+import com.technawabs.openhouz.utils.Utility;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
                 itemView = layoutInflater.inflate(R.layout.property_card, parent, false);
                 break;
             case OpenHouzConstants.CardType.UPCOMING_VIEWING_CARD:
-                itemView = layoutInflater.inflate(R.layout.property_viewing_card, parent, false);
+                itemView = layoutInflater.inflate(R.layout.upcoming_property_viewed_card, parent, false);
                 break;
             case OpenHouzConstants.CardType.UPCOMING_VIEWED_CARD:
                 break;
@@ -47,6 +47,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
         if (propertyDetail != null) {
             switch (propertyDetail.getCardType()) {
                 case OpenHouzConstants.CardType.UPCOMING_VIEWED_CARD:
+                    bindViewedPropertyCard(propertyDetail, holder);
                     break;
                 case OpenHouzConstants.CardType.UPCOMING_VIEWING_CARD:
                     bindUpcomingViewingPropertyCard(propertyDetail, holder);
@@ -115,9 +116,44 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
         if (propertyDetail.getPropertyLocation() != null) {
             holder.propertyAddress.setText(propertyDetail.getPropertyLocation());
         }
+        if (propertyViewing != null) {
+            if (propertyViewing.getAgentName() != null && propertyViewing.getAgentContactNumber() != null) {
+                holder.propertyAgentNameNumber.setText(Utility.getUnderlinedText(propertyViewing.getAgentName()) + "\n" + Utility.getUnderlinedText(propertyViewing.getAgentContactNumber()));
+            }
+            if (propertyViewing.getTime() != null) {
+                holder.propertyDateTime.setText(Utility.getUnderlinedText(propertyViewing.getTime().toString()));
+            }
+            holder.cancelViewing.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+            holder.getPropertyDirection.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+        }
     }
 
     private void bindViewedPropertyCard(PropertyDetail propertyDetail, PropertyViewHolder holder) {
+        PropertyViewing propertyViewing = propertyDetail.getPropertyViewing();
+        if (propertyDetail.getPropertyImageUrl() != null) {
+//                holder.propertyImage.setImageResource();
+        }
+        if (propertyDetail.getPropertyLocation() != null) {
+            holder.propertyAddress.setText(propertyDetail.getPropertyLocation());
+        }
+        if (propertyViewing != null) {
+            if (propertyViewing.getAgentName() != null && propertyViewing.getAgentContactNumber() != null) {
+                holder.propertyAgentNameNumber.setText(Utility.getUnderlinedText(propertyViewing.getAgentName()) + "\n" + Utility.getUnderlinedText(propertyViewing.getAgentContactNumber()));
+            }
+            if (propertyViewing.getTime() != null) {
+                holder.propertyDateTime.setText(Utility.getUnderlinedText(propertyViewing.getTime().toString()));
+            }
+        }
     }
 
     public static class PropertyViewHolder extends RecyclerView.ViewHolder {
@@ -133,12 +169,11 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
         private TextView propertyRent;
         //Property Viewing Card
         private TextView propertyAddress;
-        private TextView propertyViewingTime;
-        private TextView propertyAgentName;
-        private TextView propertyAgentContactNumber;
+        private TextView propertyDateTime;
+        private TextView propertyAgentNameNumber;
         private TextView propertyPrice;
-        private Button cancelViewing;
-        private Button getPropertyDirection;
+        private TextView cancelViewing;
+        private TextView getPropertyDirection;
 
 
         public PropertyViewHolder(Context context, View itemView) {
@@ -154,7 +189,10 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
             //Upcoming card
             propertyImage = (ImageView) itemView.findViewById(R.id.property_image);
             propertyAddress = (TextView) itemView.findViewById(R.id.property_address);
-
+            propertyDateTime = (TextView) itemView.findViewById(R.id.data_time_text);
+            propertyAgentNameNumber = (TextView) itemView.findViewById(R.id.agent_name_num);
+            cancelViewing = (TextView) itemView.findViewById(R.id.cancel_viewing);
+            getPropertyDirection = (TextView) itemView.findViewById(R.id.get_direction);
         }
     }
 }
