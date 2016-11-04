@@ -15,7 +15,6 @@ import com.technawabs.openhouz.models.MetroStation;
 import com.technawabs.openhouz.models.SpaceDetail;
 import com.technawabs.openhouz.utils.Utility;
 import com.technawabs.openhouz.views.adapters.GenericArrayAdapter;
-import com.technawabs.openhouz.views.uicomponents.tabs.SlidingTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +23,7 @@ public class PropertyDetail extends AppCompatActivity {
 
     private final String TAG = this.getClass().getName();
     ViewPager pager;
-    ViewPagerAdapter adapter;
-    SlidingTabLayout tabs;
+//    SlidingTabLayout tabs;
     CharSequence Titles[] = {"VR Tour", "Living Room", "Bedroom", "Bathroom"};
     int NumbOfTabs = 4;
     ListView spaceDetails;
@@ -127,44 +125,5 @@ public class PropertyDetail extends AppCompatActivity {
         genericArrayAdapter.notifyDataSetChanged();
         Utility.setListViewHeightBasedOnChildren(restrictions);
         Log.d(TAG, ": " + genericArrayAdapter.getCount());
-    }
-}
-
-class ViewPagerAdapter extends FragmentStatePagerAdapter {
-
-    CharSequence Titles[];
-    int NumbOfTabs;
-
-    public ViewPagerAdapter(FragmentManager fm, CharSequence mTitles[], int mNumbOfTabs) {
-        super(fm);
-        this.Titles = mTitles;
-        this.NumbOfTabs = mNumbOfTabs;
-    }
-
-    @Override
-    public Fragment getItem(int position) {
-        switch (position) {
-//            case 0:
-//                InYourCity inYourCityTab=new InYourCity();
-//                return inYourCityTab;
-//            case 1:
-//                NearBy nearByTab=new NearBy();
-//                return nearByTab;
-//            case 2:BestOffers bestOffersTab=new BestOffers();
-//                return bestOffersTab;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public int getCount() {
-        return NumbOfTabs;
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-//        return super.getPageTitle(position);
-        return Titles[position];
     }
 }

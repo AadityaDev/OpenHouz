@@ -4,11 +4,19 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.technawabs.openhouz.R;
+import com.technawabs.openhouz.constants.OpenHouzConstants;
+import com.technawabs.openhouz.models.PropertyDetail;
+import com.technawabs.openhouz.views.adapters.PropertyAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +36,10 @@ public class Viewed extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private List<PropertyDetail> propertyDetailList;
+    private RecyclerView propertyCardList;
+    private PropertyAdapter propertyAdapter;
+    private LinearLayoutManager linearLayoutManager;
     private OnFragmentInteractionListener mListener;
 
     public Viewed() {
@@ -65,7 +77,27 @@ public class Viewed extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_viewed, container, false);
+        View view = inflater.inflate(R.layout.fragment_viewed, container, false);
+        propertyCardList = (RecyclerView) view.findViewById(R.id.viewed_property_list);
+        propertyCardList.setHasFixedSize(true);
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        propertyCardList.setLayoutManager(linearLayoutManager);
+        propertyDetailList = new ArrayList<PropertyDetail>();
+        propertyAdapter = new PropertyAdapter(propertyDetailList);
+        propertyCardList.setAdapter(propertyAdapter);
+        for (int i = 0; i < 5; i++) {
+            PropertyDetail propertyDetail = new PropertyDetail();
+            propertyDetail.setPropertyTitle("Title" + i);
+            propertyDetail.setFavorite(true);
+            propertyDetail.setId(i);
+            propertyDetail.setPrice("300" + i);
+            propertyDetail.setPropertyLocation("Delf");
+            propertyDetail.setPropertyBHK("43");
+            propertyDetail.setCardType(OpenHouzConstants.CardType.UPCOMING_VIEWED_CARD);
+            propertyDetailList.add(propertyDetail);
+        }
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

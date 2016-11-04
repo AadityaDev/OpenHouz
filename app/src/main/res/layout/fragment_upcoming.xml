@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.technawabs.openhouz.views.fragments.Upcoming">
+    tools:context="com.technawabs.openhouz.views.fragments.Upcoming"
+    android:background="@color/gray"
+    >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/upcoming_viewing_property_list"

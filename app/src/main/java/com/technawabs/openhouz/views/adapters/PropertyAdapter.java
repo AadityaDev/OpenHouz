@@ -33,9 +33,10 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
                 itemView = layoutInflater.inflate(R.layout.property_card, parent, false);
                 break;
             case OpenHouzConstants.CardType.UPCOMING_VIEWING_CARD:
-                itemView = layoutInflater.inflate(R.layout.upcoming_property_viewed_card, parent, false);
+                itemView = layoutInflater.inflate(R.layout.upcoming_property_card, parent, false);
                 break;
             case OpenHouzConstants.CardType.UPCOMING_VIEWED_CARD:
+                itemView = layoutInflater.inflate(R.layout.upcoming_property_viewed_card, parent, false);
                 break;
         }
         return new PropertyViewHolder(parent.getContext(), itemView);

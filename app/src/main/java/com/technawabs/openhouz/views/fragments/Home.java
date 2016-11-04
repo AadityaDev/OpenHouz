@@ -1,6 +1,7 @@
 package com.technawabs.openhouz.views.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import com.technawabs.openhouz.R;
 import com.technawabs.openhouz.models.PropertyDetail;
 import com.technawabs.openhouz.views.adapters.PropertyAdapter;
+import com.technawabs.openhouz.views.uicomponents.ItemClickSupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,6 +96,13 @@ public class Home extends Fragment {
             propertyDetail.setPropertyBHK("43");
             propertyDetailList.add(propertyDetail);
         }
+        ItemClickSupport.addTo(propertyCardList).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                Intent intent=new Intent(getContext(),com.technawabs.openhouz.activities.PropertyDetail.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
